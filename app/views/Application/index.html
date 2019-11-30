@@ -1,0 +1,84 @@
+#{if session.get("usuario.tipo").equals("PADRAO")}
+#{extends 'main2.html' /}
+#{/if}
+#{else}
+#{extends 'main.html' /}
+#{/else}
+#{set title:'Seja bem vindo' /}
+<meta charset="utf-8"/>
+<hr/>
+<p>Olá Senhor(a) ${session.get("usuario.nome")} este é o SGMult seu sistema de gerenciamento e administração de atividades do setor da Comult.</p>
+#{if !session.get("usuario.tipo").equals("PADRAO")}
+<!-- empréstimos -->
+<div class="row">
+<div class="col-xl-3 col-md-6 mb-4">
+              <div class="card border-left-primary shadow h-100 py-2">
+                <div class="card-body">
+                  <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                      <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Empréstimos realizados neste mês</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800">${emprestimos}</div>
+                    </div>
+                    <div class="col-auto">
+                      <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+          	 </div>
+<!-- Impressos -->
+<div class="col-xl-3 col-md-6 mb-4">
+              <div class="card border-left-info shadow h-100 py-2">
+                <div class="card-body">
+                  <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                      <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Impressões realizadas neste mês</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800">${impressos}</div>
+                    </div>
+                    <div class="col-auto">
+                      <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+          	 </div>
+          	 
+
+<!-- Usuários -->
+<div class="col-xl-3 col-md-6 mb-4">
+              <div class="card border-left-success shadow h-100 py-2">
+                <div class="card-body">
+                  <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                      <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Usuários cadastrados no sistema</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800">${users}</div>
+                    </div>
+                    <div class="col-auto">
+                      <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+          	 </div>
+          	 
+
+<!-- Mensagens -->
+<div class="col-xl-3 col-md-6 mb-4">
+              <div class="card border-left-warning shadow h-100 py-2">
+                <div class="card-body">
+                  <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                      <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Mensagens recebidas</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800">${msg}</div>
+                    </div>
+                    <div class="col-auto">
+                      <i class="fas fa-comments fa-2x text-gray-300"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+          	 </div>
+          	 
+	</div>	
+</div>
+#{/if}

@@ -1,0 +1,40 @@
+#{if session.get("usuario.tipo").equals("PADRAO")}
+#{extends 'main2.html' /}
+#{/if}
+#{else}
+#{extends 'main.html' /}
+#{/else}
+#{set title:'Lista de suas requisições' /}
+<meta charset="UTF-8">	
+
+
+
+	<table class="table ">
+	<thead class="thead-dark">
+	<tr>
+      <th scope="col">Usuario</th>
+      <th scope="col">Requisição</th>
+      <th scope="col">Motivo</th>
+      <th scope="col">Status</th>
+      <th scope="col">Deletar</th>
+      <th scope="col">Editar</th>
+    </tr>
+     </thead>
+     <tbody>
+	#{list items:lista, as:"req"}
+	<tr>
+	<td scope= "row">${req.usuario.nome}</td><td scope = "row">${req?.material?.nome}</td>
+	<td> ${req.causa}</td>
+	<td> ${req.status}</td>
+	{if}
+	<td scope = "row"><a href="@{Requisicaos.deletar(req.id)}">Deletar</a></td>
+	{/if}
+	<td scope = "row"><a href="@{Requisicaos.editar(req.id)}">Editar</a></td>
+	
+	#{/list}	
+	</tr>
+	</tbody>
+	</table>
+	#{else}
+		Lista Vazia
+	#{/else}

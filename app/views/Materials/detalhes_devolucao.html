@@ -1,0 +1,37 @@
+#{extends 'main.html' /}
+#{set title:'Detalhes de devolvolução de material' /}
+<meta charset="utf-8">
+<h1>DETALHES DEVOLUÇÃO</h1>
+<h2>Detalhes sobre a requisição</h2>
+<table>
+	<tr>
+	<td>Sobre requisitação</td>
+	</tr>
+	<tr>
+	<td>Numero de identificação</td>
+	<td>${req?.id}</td>
+	</tr>
+	<tr>
+	<td>Motivo</td>
+	<td>${req?.causa}</td>
+	</tr>
+	<tr>
+	<td>Dados sobre solicitador</td>
+	</tr>
+	<tr>
+	<td>Nome</td>
+	<td>${req?.usuario.nome}</td>
+	<td>
+	</tr>
+	<tr>
+	<td>Email</td>
+	<td>${req?.usuario?.email}</td>
+	</tr>
+	<tr>
+	<td>Dados do Material</td>
+	</tr>
+	<tr>
+	<td>${req?.material?.nome}</td>
+	</tr>
+</table>
+<button action="@{Materials.devolver(req.id)}" method="post">Dar baixa</button>

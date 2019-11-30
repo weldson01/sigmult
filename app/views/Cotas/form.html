@@ -1,0 +1,28 @@
+#{if session.get("usuario.tipo").equals("PADRAO")}
+#{extends 'main2.html' /}
+#{/if}
+#{else}
+#{extends 'main.html' /}
+#{/else}
+#{set title:'Formulário de cota' /}
+<meta charset="UTF-8">
+
+
+<div class="card shadow mb-4">
+                <div class="card-header py-3">
+                  <h5 class="m-0 font-weight-bold text-primary">Formulário de cota</h5>
+                </div>
+                <div class="card-body">
+				<form action="@{Cotas.salvar}" method="POST">
+					<table>
+					<input type="hidden" name="cot.id" value="${cot?.id}">
+				<tr><td>Nome da cota: </td><td><input type="text" name="cot.nome" value="${cot?.nome}"></td></tr>
+				<tr><td>Quantidade Total: </td><td><input type="number" name="cot.quantidadeTotal" value="${cot?.quantidadeTotal}"></td></tr>
+				<tr><td>Quantidade Disponível: </td><td><input type="number" name="cot.quantidadeDisponivel" value="${cot?.quantidadeDisponivel}"></td></tr>
+				<tr><td>Matricula do Adiministrador da cota: </td><td><input type="text" name="matricula"></td></tr>
+				
+					</table>
+					<button class="btn btn-primary">Confirmar</button>
+				</form>
+ </div>
+      </div>

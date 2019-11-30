@@ -1,0 +1,8 @@
+#{if session.get("usuario.tipo").equals("PADRAO")}
+#{extends 'main2.html' /}
+#{/if}
+#{else}
+#{extends 'main.html' /}
+#{/else}
+<meta charset="utf-8">
+#{set title:'Mensagens Lista' /}

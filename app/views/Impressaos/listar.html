@@ -1,0 +1,44 @@
+#{if session.get("usuario.tipo").equals("PADRAO")}
+#{extends 'main2.html' /}
+#{/if}
+#{else}
+#{extends 'main.html' /}
+#{/else}
+#{set title:'Lista de pedidos de Impressões' /}
+<meta charset="UTF-8">
+<div class="card">
+	<div class="card-action">
+ 		
+	</div>
+	<div class="card-content">
+		<div class="table-responsive">
+			<table class="table">
+				<thead>
+					<tr>
+						<th>Cota usada</th>
+						<th>Data da solicitação</th>
+						<th>Data para recebimento</th>
+						<th>Estado da impressão</th>
+						<th>Cancelar pedido</th>
+					</tr>
+				</thead>
+				<tbody>
+					#{list items:lista, as:"imp"}
+					<tr>
+					<td>${imp?.cota.nome}</td>
+					<td>${imp?.dataDeSolicitacaoString}</td>
+					<td>${imp?.dataDeRecebimentoString}</td>
+					<td>${imp?.status}</td>
+					<td><a href="@{Impressaos.deletar(imp.id)}">Deletar</a></td>
+					</tr>
+					#{/list}
+					
+				</tbody>
+					
+				</table>
+		</div>
+		#{else}
+			Nenhum item encontrado
+		#{/else}
+	</div>
+</div>

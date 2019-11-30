@@ -1,0 +1,29 @@
+#{if session.get("usuario.tipo").equals("PADRAO")}
+#{extends 'main2.html' /}
+#{/if}
+#{else}
+#{extends 'main.html' /}
+#{/else}
+<meta charset="utf-8">
+#{set title:'Formulário de requisição' /}
+<div class="card shadow mb-4">
+                <div class="card-header py-3">
+                  <h5 class="m-0 font-weight-bold text-primary">Requisitar materiais</h5>
+                </div>
+                <div class="card-body">
+<form action="@{Requisicaos.salvar}"method="post">
+	<input type="hidden" name="req.id" value="${req?.id}">
+	
+	Material
+			<select name="idMaterial">
+			#{list items:lista, as:"mat"}
+				<option value="${mat?.id}">${mat.nome}</option>
+			#{/list}
+			</select><br/>
+	Motivo da requisição<br/><textarea name="req.causa" value="${req?.causa}" type="text" rows="4" cols="50" style="resize: none"></textarea><br/>
+	<span class="badge badge-pill badge-warning">#{error 'req.causa' /}</span><br>
+	<!-- Fazer lista de materiais -->
+	<input class="btn btn-primary" type="submit">
+</form>
+ </div>
+      </div>

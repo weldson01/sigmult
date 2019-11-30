@@ -1,0 +1,53 @@
+#{extends 'main.html' /}
+#{set title:'Home' /}
+	<h1>Lista de Usuarios </h1>
+	<hr/>
+	<div haight="110%">
+	<form action="@{Usuarios.listar}" class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search" method="Post">
+	<div class="input-group">
+              <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
+              <div class="input-group-append">
+                <button name="buscar" class="btn btn-primary" type="button">
+                  <i class="fas fa-search fa-sm"></i>
+                </button>
+              </div>
+            </div>
+	</form>
+	
+	</div>
+	<hr />
+	<div>
+	<table class="table ">
+	<thead class="thead-dark">
+	<tr>
+      <th scope="col">#</th>
+      <th scope="col">Foto</th>
+      <th scope="col">Nome</th>
+      <th scope="col">Email</th>
+      <th scope="col">Deletar</th>
+      <th scope="col">Editar</th>
+    </tr>
+     </thead>
+     <tbody>
+	#{list items: lista, as: "user"}
+
+	<tr>
+	<td scope= "row">${user.id}</td>
+	#{if user?.tipoUsuario.equals("ADMIN")}
+	<td scope="row"><img src="@{Usuarios.mostrarImagem(user.id)}" class="rounded-circle" width="50px" height="50px"></td>
+	#{/if}
+	#{else}
+	<td scope="row"><img src="${user.url_foto_75x100}" class="rounded-circle" width="50px" height="50px"></td>
+	#{/else}
+	<td scope = "row">${user.nome}</td>
+	<td> ${user.email}</td>
+	<td scope = "row"><a href="@{Usuarios.deletar(user.id)}">Deletar</a></td> 
+	<td scope = "row"><a href="@{Usuarios.editar(user.id)}">Editar</a></td>
+	#{/list}	
+	</tr>
+	</tbody>
+	</table>
+	#{else}
+		Lista Vazia
+	#{/else}
+	</div>

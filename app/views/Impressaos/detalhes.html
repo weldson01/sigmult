@@ -1,0 +1,74 @@
+#{if session.get("usuario.tipo").equals("PADRAO")}
+#{extends 'main2.html' /}
+#{/if}
+#{else}
+#{extends 'main.html' /}
+#{/else}
+#{set title:'Detalhes da impressão' /}
+<meta charset="UTF-8">
+<!-- Fazer ainda isso aqui -->
+
+
+	<div class="card shadow mb-4">
+                <div class="card-header py-3">
+                  <h5 class="m-0 font-weight-bold text-primary">Requisição de impressão</h5>
+                </div>
+                <div class="card-body">
+                
+                  <h3>Informações da impressão</h3>
+                  
+                  <!--  -->
+                  <table>
+                 <tbody>
+				<tr><th>Informações do Usuario</th></tr>
+				<tr>
+				<td><strong>Foto:</strong></td>
+				<td><img alt="usuário sem foto de perfil"src="${imp.usuarioImp.url_foto_75x100}" style="width:100px;haight:100px;"></td>
+				</tr>
+				<tr>
+				<td><strong>Nome: </strong></td><td>${imp.usuarioImp.nome}</td>
+				</tr>
+				<tr>
+				<td><strong>Email: </strong></td><td>${imp.usuarioImp.email}</td>
+				</tr>
+				<tr>
+				<td><strong>Matricula: </strong></td><td>${imp.usuarioImp.matricula}</td>
+				</tr>
+			<tr><th>Informações do arquivo</th></tr>
+			<tr>
+				<td>Nome do arquivo:</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td><a href="@{Impressaos.baixarArquivo(imp.id)}" class="btn btn-primary btn-icon-split">Baixar arquivo</a></td>
+			</tr>
+			<tr><th>Analise da requisição</th></tr>
+			<tr>
+			<td scope = "row">
+			<a href="@{Impressaos.status(true, imp.id)}" class="btn btn-success btn-icon-split">
+                    <span class="icon text-white-50">
+                      <i class="fas fa-check"></i>
+                    </span>
+                    <span class="text">Aceitar</span>
+            </a>
+            </td>
+           <td>
+            <a href="@{Impressaos.status(false, imp.id)}" class="btn btn-danger btn-icon-split">
+                    <span class="icon text-white-50">
+                      <i class="fas fa-trash"></i>
+                    </span>
+                    <span class="text">Recusar</span>
+                  </a>
+            </td>
+			</tr>
+			
+			</tbody>
+       </table>          
+                  
+                  
+           </div>
+      </div>
+      
+      
+                  
+               

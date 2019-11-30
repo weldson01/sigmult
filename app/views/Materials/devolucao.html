@@ -1,0 +1,45 @@
+#{extends 'main.html' /}
+#{set title:'Devolução de materiais' /}
+<meta charset="UTF-8">
+<form action="@{Materials.encontrarMaterial(pesquisa)}" class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search" method="Post">
+	<div class="input-group">
+              <input name="pesquisa" type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
+              <div class="input-group-append">
+                <button class="btn btn-primary">
+                  <i class="fas fa-search fa-sm"></i>
+                </button>
+              </div>
+            </div>
+	</form>
+	<hr/>
+<form action="@{Materials.devolver()}" method="POST">
+		#{if mat != null}
+			<input type="hidden" name="idMaterial" value="${mat?.id}">
+			<table>
+				<tr>
+				<th>Informações sobre o material</th>	
+				</tr>
+				<tr>
+				<td>Nome do material:</td><td>${req?.material?.nome}</td>
+				</tr>
+				<tr>
+				<td>Código do material:</td><td>${req?.material?.cod}</td>
+				</tr>
+				<tr>
+				<th>Informações sobre usuário requisitor</th>
+				</tr>
+				<tr>
+				<td>Nome do usuario:</td><td>${req?.usuario?.nome}</td>
+				</tr>
+				<tr>
+				<td>Matricula do usuário:</td><td>${req?.usuario?.matricula}</td>
+				</tr>
+				</table>
+			
+			<br/>
+		<button>Devolver</button>
+		#{/if}
+		#{else}
+		<h3>Pesquise na caixa acima o código de identificação do material que deseja-se devolver.</h3>
+		#{/else}
+</form>

@@ -1,0 +1,42 @@
+#{if session.get("usuario.tipo").equals("PADRAO")}
+#{extends 'main2.html' /}
+#{/if}
+#{else}
+#{extends 'main.html' /}
+#{/else}
+#{set title:'Lista de Cotas' /}
+<meta charset="UTF-8">
+<div class="card">
+	<div class="card-action">
+ 		
+	</div>
+	<div class="card-content">
+		<div class="table-responsive">
+			<table class="table">
+				<thead>
+					<tr>
+						<th scope="col">Nome</th>
+						<th scope="col">Quantidade total</th>
+						<th scope="col">Quantidade disponível</th>
+						<th scope="col">Detalhes</th>
+					</tr>
+				</thead>
+				<tbody>
+					#{list items:lista, as:"cot"}
+					<tr>
+					<td>${cot.nome}</td>
+					<td>${cot.quantidadeTotal}</td>
+					<td>${cot.quantidadeDisponivel}</td>
+					<td><a href="@{Cotas.detalhes(cot.id)}">Detalhes</a></td>
+					</tr>
+					#{/list}
+					
+				</tbody>
+					
+				</table>
+				#{else}
+						Nenhum item encontrado
+				#{/else}
+		</div>
+	</div>
+</div>

@@ -1,0 +1,47 @@
+#{if session.get("usuario.tipo").equals("PADRAO")}
+#{extends 'main2.html' /}
+#{/if}
+#{else}
+#{extends 'main.html' /}
+#{/else}
+#{set title:'Detalhes de Cotas' /}
+<meta charset="UTF-8">
+
+<div class="card">
+	<div class="card-action">
+	</div>
+	<div class="card-content">
+	
+		<div class="table-responsive">
+			<table class="table">
+				<tbody>
+					<tr>
+					<td>Nome da Cota:</td><td>${cot.nome}</td>
+					</tr>
+					<tr>
+					<td>Quantidade Total:</td><td>${cot.quantidadeTotal}</td>
+					</tr>
+					<tr>
+					<td>Quantidade Disponivel:</td><td>${cot.quantidadeDisponivel}</td>
+					</tr>
+					<tr><th>Administradores</th></tr>
+					<tr>
+					<td>Adminitrador principal:</td><td>${cot.adm.nome}</td><td>Matricula:</td><td>${cot.adm?.matricula}</td>
+					</tr>
+					#{list items:cot.administradores, as:"adm"}
+					<tr>
+					<td>Nome:</td>
+					<td>${adm?.nome}</td>
+					</tr>
+					#{/list}
+				</tbody>
+				</table>
+		</div>
+	</div>
+	#{if !session.get("usuario.tipo").equals("PADRAO")}
+	<!-- lembrar de colocar apenas para os administradores da cota -->
+	<form action="@{Cotas.adicionarPessoa(cot.id)}" method="POST">
+		<button>Adicionar pessoa acessível à cota</button>
+	</form>
+	#{/if}
+</div>

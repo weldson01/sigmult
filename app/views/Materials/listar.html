@@ -1,0 +1,40 @@
+#{extends 'main.html' /}
+#{set title:'Lista de Materiais' /}
+<meta charset="utf-8" />
+<!--   Basic Table  -->
+<hr/>
+<div class="card">
+	<div class="card-action">
+ 		
+	</div>
+	<div class="card-content">
+		<div class="table-responsive">
+			<table class="table">
+				<thead>
+					<tr>
+						<th>Nome</th>
+						<th>Foto</th>
+						<th>Disponibilidade</th>
+						<th>Editar</th>
+						<th>Deletar</th>
+					</tr>
+				</thead>
+				<tbody>
+					#{list items:lista, as:"mat"}
+					<tr>
+					<td>${mat.nome}</td>
+					<td><img src="@{Materials.mostrarFoto(mat.id)}" class="rounded" width="50"height="50"></td>
+					<td>${mat.status}</td>
+					<td><a href="@{Materials.editar(mat.id)}">Editar</a></td>
+					<td><a href="@{Materials.deletar(mat.id)}">Deletar</a></td>
+					</tr>
+					#{/list}
+				</tbody>
+				</table>
+				#{else}
+						Nenhum item encontrado
+					#{/else}
+		</div>
+	</div>
+</div>
+<!-- End  Basic Table  -->

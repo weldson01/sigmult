@@ -1,0 +1,23 @@
+#{if session.get("usuario.tipo").equals("PADRAO")}
+#{extends 'main2.html' /}
+#{/if}
+#{else}
+#{extends 'main.html' /}
+#{/else}
+<meta charset="utf-8">
+#{set title:'Formulário de mensagens' /}
+
+<form>
+	<input type="hidden" name="idTo" value="user.id">
+	Tipo: <select name="m.tipo">
+	<option value="ACEITO">Aceitação</option>
+	<option value="RECUSADO">Recusação</option>
+	<option value="AVISO">Aviso</option>
+	<option value="OUTRO">Outro</option>
+	</select><br/>
+	Mensagem: <input type="text" name="m.frase" width="100%" hieght="200px">
+	<br/>
+	<button>Enviar</button>
+</form>
+	
+	

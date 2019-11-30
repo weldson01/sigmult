@@ -1,0 +1,35 @@
+#{if session.get("usuario.tipo").equals("PADRAO")}
+#{extends 'main2.html' /}
+#{/if}
+#{else}
+#{extends 'main.html' /}
+#{/else}
+#{set title:'Formulário de cota' /}
+<meta charset="UTF-8">
+
+
+<div class="card shadow mb-4">
+                <div class="card-header py-3">
+                  <h5 class="m-0 font-weight-bold text-primary">Formulário de cota</h5>
+                </div>
+                <div class="card-body">
+				#{if user?.id == null}
+					<form action="@{Cotas.encontrarUser()}" method="POST">
+					<input type="hidden"name="cotID" value="${cot?.id}">
+					 Matricula do usuário: <input name="search" type="text">
+					 					   <input type="submit">
+					</form>
+				#{/if}
+				#{else}
+				<form action="@{Cotas.adicionarUser()}" method="POST">
+					<input type="hidden" name="cotID" value="${cot?.id}">
+					<input type="hidden" name="userID" value="${user?.id}">
+					Nome: ${user.nome}<br/>
+					Matricula: ${user.matricula}<br/>
+					Vinculo: ${user.tipoVinculo}
+					<br/>
+					<button class="btn btn-primary">Confirmar</button>
+				</form>
+				#{/else}
+ </div>
+ </div>

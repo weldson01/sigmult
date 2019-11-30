@@ -1,0 +1,35 @@
+#{if session.get("usuario.tipo").equals("PADRAO")}
+#{extends 'main2.html' /}
+#{/if}
+#{else}
+#{extends 'main.html' /}
+#{/else}
+#{set title:'Lista de Requisições de Impressões' /}
+<meta charset="UTF-8">	
+	<table class="table ">
+	<thead class="thead-dark">
+	<tr>
+      <th scope="col">Nome do Requisitor</th>
+      <th scope="col">Data da Solicitação</th>
+      <th scope="col">Data do Recebimento</th>
+      <th scope="col">Status</th>
+      <th scope="col">Detalhes</th>
+    </tr>
+     </thead>
+     <tbody>
+	#{list items:lista, as:"imp"}
+	<tr>
+	<td scope= "row">${imp?.usuarioImp?.nome}</td>
+	<td scope = "row">${imp?.dataDeSolicitacaoString}</td>
+	<td scope = "row">${imp?.dataDeRecebimentoString}</td>
+	<td> ${imp.status}</td>
+	<td><a href="@{Impressaos.detalhes(imp.id)}" class="btn btn-primary">Detalhes</a></td>
+	<!-- 
+	 -->
+	#{/list}
+	</tr>
+	</tbody>
+	</table>
+	#{else}
+		Lista Vazia
+	#{/else}

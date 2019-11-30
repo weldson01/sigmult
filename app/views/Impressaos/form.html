@@ -1,0 +1,52 @@
+#{if session.get("usuario.tipo").equals("PADRAO")}
+#{extends 'main2.html' /}
+#{/if}
+#{else}
+#{extends 'main.html' /}
+#{/else}
+#{set title:'Requisitar Impressão' /}
+<meta charset="UTF-8">
+
+
+<div class="card shadow mb-4">
+                <div class="card-header py-3">
+                  <h5 class="m-0 font-weight-bold text-primary">Requisitar Impressão</h5>
+                </div>
+                <div class="card-body">
+<form action="@{Impressaos.salvar}" method="POST" enctype="multipart/form-data">
+	<input type="hidden" name="imp.id">
+	
+	<p style="font-size: 25px">Especificações do arquivo</p>
+	<hr>
+	Data para recebimento: <input type="date" name="imp.dataDeRecebimento" id="data" style="width:280px"><br>
+	<p class="p-3 mb-2 bg-warning text-dark">(caso a data escolhida seja para o mesmo dia ou um dia seguinte a impressão corre o risco de não ser efetuada)</p>
+	<hr>
+	Tamanho do papel: <select type="text"name="imp.arquivo.tamanhoFolha" style="width:310px">
+						<option>A4</option>
+						<option>A3</option>
+					</select>
+	<hr>
+	Intervalo de páginas a ser impressas: <input type="text" name="imp.arquivo.intervaloImpressao" placeholder="exemplo: 1-8 ou 1,5 e 7">
+	<hr>
+	Quantidade de cópias: <input type="number" name="imp.arquivo.quantidadeCopias" placeholder="exemplo: 1">
+	<hr>
+	Frente e verso ou folhas de verso em branco: <input type="text" name="imp.arquivo.frenteVerso" placeholder="exemplo: Frente e verso">
+	<hr>
+	Tipo de impressao: <select type="text" name="imp.tipo">
+							<option value="COMUM">Comum (Qualquer pessoa pode imprimir)</option>
+							<option value="RESTRITO">Restito (Apenas servidores podem imprimir)</option>
+					   </select>
+					   <hr>
+	Usar cota:<select name="cotid">
+	#{list items:lista, as:"c"}
+			  	<option value="${c.id}">${c?.nome}</option>
+			  
+	#{/list}
+	</select>
+	<hr>
+	Arquivo para impressão: <input type="file" name="imp.arquivo.arquivo">
+	<input type="submit" value="Solicitar">
+	
+</form>
+ </div>
+      </div>
